@@ -1,0 +1,22 @@
+.wrapper{
+    width: 80%;
+    margin: 10px auto 0 auto;
+
+    .item-wrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .wrapper{
+        width: 100%;
+
+        .item-wrapper{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    }
+}
