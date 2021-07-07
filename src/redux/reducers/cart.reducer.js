@@ -52,11 +52,9 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             return {...state, carts: []}
 
         case REMOVE_ITEM:
-            let data = state?.carts
-            if (data.length > 0 && data.length !== 1) {
-                data = data.filter(e => data.id !== action?.data.id);
-                localStorage.setItem('carts', JSON.stringify(data));
-                return {...state, carts: data}
+            if (state?.carts.length > 0 && state?.carts.length !== 1) {
+                localStorage.setItem('carts', JSON.stringify(state.carts.filter(e => e.id !== action?.data.id)));
+                return {...state, carts: state.carts.filter(e => e.id !== action?.data.id)}
             }
 
             localStorage.removeItem('carts')
