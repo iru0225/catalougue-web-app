@@ -16,8 +16,16 @@
             width: 70%;
 
             button{
-                padding: .5rem 2rem;
                 margin-top: 10px;
+                padding: .8rem 2rem;
+                background: #476040;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+    
+                &:hover{
+                    background: #96A27A;
+                }
             }
         }
     }

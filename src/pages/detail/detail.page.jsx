@@ -32,7 +32,7 @@ const DetailPage = ({location}) => {
                     </Carousel>
                     <div className="detail-button">
                         <span>{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(data.price)}</span>
-                        <button>+ Keranjang</button>
+                        <button>Add To Cart</button>
                     </div>
                 </div>
                 <div className="detail" style={{'width': '60%'}}>
