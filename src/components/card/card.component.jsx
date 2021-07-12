@@ -33,7 +33,7 @@ const CardComponent = ({data}) => {
                 </div>
                 <div className="button-wrapper">
                     <span>{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(data.price)}</span>
-                    <button onClick={addItem}>Add To Card</button>
+                    <button onClick={addItem}>Add To Cart</button>
                 </div>
             </div>
         </div>
