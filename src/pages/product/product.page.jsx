@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import CardComponent from '../../components/card/card.component';
+import dataNotFound from '../../assets/image/data-not-found.svg'
 
 import './product.style.scss';
 
@@ -60,36 +61,50 @@ const ProductPage = ({location}) => {
         <>
                 {
                     itemData?.length > 0 ?
-                        itemData?.map(e => {
-                        return( e.items?.length > 0 ?
-                            <div className="product-container" key={e.id}>
-                                <p>{e.name}</p>
-                                <div className="product-card">
-                                    {
-                                        e.items?.map(f => {
-                                            return(
-                                                <CardComponent key={f.product.sku} data={f.product}/>
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div>
-                            :
-                            null)
-                        })
-                    :
-                        <div className="product-container">
-                            <p>{itemData?.name}</p>
-                                <div className="product-card">
-                                    {
-                                        itemData?.items?.map(f => {
-                                            return(
-                                                <CardComponent key={f.sku} data={f}/>
-                                            )
-                                        })
-                                    }
-                                </div>
+                        itemData.reduce((a, b) => (a + b['items'].length || 0), 0) > 0 ?
+                            itemData?.map(e => {
+                                return(
+                                    e.items?.length > 0 ?
+                                        <div className="product-container" key={e.id}>
+                                            <p>{e.name}</p>
+                                            <div className="product-card">
+                                                {
+                                                    e.items?.map(f => {
+                                                        return(
+                                                            <CardComponent key={f.product.sku} data={f.product}/>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    :
+                                        null
+                                )
+                            })
+                        :
+                        <div className="data-empty">
+                            <img src={dataNotFound} alt=""/>
+                            <h1>Data Not Found</h1>
                         </div>
+                    :
+                        itemData?.items.length > 0 ?
+                            <div className="product-container">
+                                <p>{itemData?.name}</p>
+                                    <div className="product-card">
+                                        {
+                                            itemData?.items?.map(f => {
+                                                return(
+                                                    <CardComponent key={f.sku} data={f}/>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                            </div>
+                        :
+                            <div className="data-empty">
+                                <img src={dataNotFound} alt=""/>
+                                <h1>Data Not Found</h1>
+                            </div>
                 }
         </>
     )
